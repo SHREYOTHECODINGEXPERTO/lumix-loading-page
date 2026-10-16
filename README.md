@@ -2,6 +2,9 @@
 
 > A state-of-the-art motion system, interactive loader sandbox, and Lottie generation engine for the LumiX brand identity.
 
+[![Live Demo](https://img.shields.io/badge/Demo-Live%20Preview-brightgreen?style=for-the-badge&logo=github)](https://shreyothecodingexperto.github.io/lumix-loading-page/)
+🔗 **Live Website**: [https://shreyothecodingexperto.github.io/lumix-loading-page/](https://shreyothecodingexperto.github.io/lumix-loading-page/)
+
 ---
 
 ## 🚀 Overview
