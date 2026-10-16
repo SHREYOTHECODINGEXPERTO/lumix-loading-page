@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LumiX — Animated Logo & Loader Design System</title>
+  <meta name="description" content="A state-of-the-art motion system and Lottie loader for the LumiX brand. Features butterfly loading, thinking orbits, processing vibrations, coaching slides, and completion morphs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Basic&family=Caveat:wght@400..700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Handjet:wght,ELSH@100..900,2&family=Isometra&family=Playwrite+AR:wght@100..400&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Ambient background glow layers -->
+  <div class="ambient-glow glow-blue"></div>
+  <div class="ambient-glow glow-coral"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- Main Navigation Bar -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="brand-badge">
+        <svg class="mini-lumix-icon" viewBox="0 0 300 300" width="28" height="28">
+          <path class="lumix-wing wing-blue" d="M 44 175 L 112 175 C 117 175 121 173 124 170 L 163 131 C 166 128 168 124 168 119 L 168 56 C 168 49 160 45 155 50 L 37 168 C 33 172 36 175 44 175 Z" fill="#2870ED" />
+          <path class="lumix-wing wing-coral" d="M 256 125 L 188 125 C 183 125 179 127 176 130 L 137 169 C 134 172 132 176 132 181 L 132 244 C 132 251 140 255 145 250 L 263 132 C 267 128 264 125 256 125 Z" fill="#F07150" />
+        </svg>
+        <span class="brand-name">Lumi<span class="brand-x">X</span></span>
+        <span class="brand-pill">MOTION SYSTEM v2.4</span>
+      </div>
+    </div>
+
+    <nav class="header-nav">
+      <button class="nav-tab active" data-view="studio">Motion Studio</button>
+      <button class="nav-tab" data-view="loader-demo">Live Loader Page</button>
+      <button class="nav-tab" data-view="lottie-hub">Lottie & Code Export</button>
+      <button class="nav-tab" data-view="guidelines">Design Guidelines</button>
+    </nav>
+
+    <div class="header-right">
+      <button id="soundToggleBtn" class="icon-btn" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">
+        <svg id="soundIconOn" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+        <svg id="soundIconOff" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="display:none;">
+          <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+        </svg>
+      </button>
+
+      <button id="themeToggleBtn" class="icon-btn" title="Toggle Lighting Mode" aria-label="Toggle Theme">
+        <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+
+      <button id="fullscreenDemoBtn" class="primary-action-btn">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+        </svg>
+        <span>Experience Loader</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- VIEW 1: MOTION STUDIO -->
+  <main id="view-studio" class="view-panel active">
+    <!-- Hero / Stage Section -->
+    <section class="stage-section">
+      <div class="stage-container">
+        <!-- Stage Canvas Card -->
+        <div class="stage-card" id="stageCard">
+          <div class="stage-hud top-hud">
+            <div class="state-badge">
+              <span class="pulse-dot"></span>
+              <span id="currentStatusText">STATE: BUTTERFLY LOADING</span>
+            </div>
+            <div class="speed-indicator">
+              <span id="fpsCounter">60 FPS</span>
+              <span class="divider">|</span>
+              <span id="speedValueLabel">1.0x</span>
+            </div>
+          </div>
+
+          <!-- Particles / Aura Background Canvas -->
+          <canvas id="particleCanvas" class="particle-canvas"></canvas>
+
+          <!-- The LumiX Master Animated Emblem Container -->
+          <div class="lumix-stage-wrapper" id="lumixStageWrapper">
+            <div class="lumix-logo-system" id="lumixLogoSystem">
+              <!-- SVG Master Logo Object -->
+              <svg id="masterLogoSvg" viewBox="0 0 300 300" class="master-logo-svg" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <!-- Blue Wing Gradient & Filters -->
+                  <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#3A82FF" />
+                    <stop offset="100%" stop-color="#2870ED" />
+                  </linearGradient>
+
+                  <!-- Coral Wing Gradient -->
+                  <linearGradient id="coralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FF8260" />
+                    <stop offset="100%" stop-color="#F07150" />
+                  </linearGradient>
+
+                  <!-- Complete Green Checkmark Gradient -->
+                  <linearGradient id="successGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#34D399" />
+                    <stop offset="100%" stop-color="#10B981" />
+                  </linearGradient>
+
+                  <!-- Luminescent Wing Glow Filters -->
+                  <filter id="blueGlow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="8" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+
+                  <filter id="coralGlow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="8" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+
+                  <!-- Drop Shadows -->
+                  <filter id="shadowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.3" />
+                  </filter>
+                </defs>
+
+                <!-- Center Rotation & Transform Group -->
+                <g id="masterGroup">
+                  
+                  <!-- Blue Quadrilateral (Wing 1: Top-Left) -->
+                  <g id="wingBlueGroup" class="wing-group wing-blue-group">
+                    <path id="wingBluePath"
+                          class="lumix-quad blue-quad"
+                          d="M 44 175 L 112 175 C 117 175 121 173 124 170 L 163 131 C 166 128 168 124 168 119 L 168 56 C 168 49 160 45 155 50 L 37 168 C 33 172 36 175 44 175 Z"
+                          fill="url(#blueGradient)"
+                          filter="url(#shadowFilter)" />
+                  </g>
+
+                  <!-- Coral Quadrilateral (Wing 2: Bottom-Right) -->
+                  <g id="wingCoralGroup" class="wing-group wing-coral-group">
+                    <path id="wingCoralPath"
+                          class="lumix-quad coral-quad"
+                          d="M 256 125 L 188 125 C 183 125 179 127 176 130 L 137 169 C 134 172 132 176 132 181 L 132 244 C 132 251 140 255 145 250 L 263 132 C 267 128 264 125 256 125 Z"
+                          fill="url(#coralGradient)"
+                          filter="url(#shadowFilter)" />
+                  </g>
+
+                  <!-- Success Morphing Checkmark (Hidden until complete state) -->
+                  <g id="completeCheckmarkGroup" class="complete-checkmark-group" opacity="0">
+                    <circle cx="150" cy="150" r="70" fill="url(#successGradient)" filter="url(#shadowFilter)"/>
+                    <path id="checkmarkPath"
+                          d="M 120 150 L 142 172 L 186 128"
+                          fill="none"
+                          stroke="#FFFFFF"
+                          stroke-width="9"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-dasharray="120"
+                          stroke-dashoffset="120" />
+                  </g>
+
+                  <!-- Central Energy Spark Ring -->
+                  <circle id="energyRing" class="energy-ring" cx="150" cy="150" r="105" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2" stroke-dasharray="8 6" opacity="0"/>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Dynamic State Captions -->
+            <div class="stage-state-info">
+              <h2 id="stateTitle" class="state-title">Butterfly Loading</h2>
+              <p id="stateDesc" class="state-desc">Smooth 3D fluttering wings moving with fluid aerodynamic physics and luminescence.</p>
+            </div>
+          </div>
+
+          <!-- Bottom Stage Controls (Speed, Pause, Reset, Glow) -->
+          <div class="stage-hud bottom-hud">
+            <div class="hud-left">
+              <button id="btnPlayPause" class="hud-btn" title="Play / Pause">
+                <svg id="playIcon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                </svg>
+                <span id="playPauseText">Pause</span>
+              </button>
+              <button id="btnRestart" class="hud-btn" title="Restart State Animation">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                </svg>
+                <span>Replay</span>
+              </button>
+            </div>
+
+            <div class="hud-center">
+              <span class="speed-label">Speed:</span>
+              <div class="speed-chips">
+                <button class="speed-chip" data-speed="0.25">0.25x</button>
+                <button class="speed-chip" data-speed="0.5">0.5x</button>
+                <button class="speed-chip active" data-speed="1.0">1.0x</button>
+                <button class="speed-chip" data-speed="1.5">1.5x</button>
+                <button class="speed-chip" data-speed="2.0">2.0x</button>
+              </div>
+            </div>
+
+            <div class="hud-right">
+              <label class="toggle-control" title="Toggle Wing Trails & Particles">
+                <input type="checkbox" id="toggleParticles" checked>
+                <span class="toggle-slider"></span>
+                <span class="toggle-text">Particles</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Motion States Control Grid -->
+        <div class="motion-states-deck">
+          <div class="deck-header">
+            <h3>Motion Core States</h3>
+            <span class="deck-subtitle">Select a state to test the LumiX animated physics engine</span>
+          </div>
+
+          <div class="states-grid">
+            <!-- 1. Butterfly Loading -->
+            <button class="state-card-btn active" data-state="loading" id="stateBtnLoading">
+              <div class="state-card-icon blue-accent">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+                  <path d="M8 12c-2 0-4-1.5-4-4s2-4 4-2 2 4 2 6zm8 0c2 0 4 1.5 4 4s-2 4-4 2-2-4-2-6z"/>
+                </svg>
+              </div>
+              <div class="state-card-info">
+                <div class="state-card-header">
+                  <span class="state-name">1. Butterfly Loading</span>
+                  <span class="state-tag">Default</span>
+                </div>
+                <p class="state-card-desc">3D fluttering wing flap along central axis with gentle floating buoyancy.</p>
+              </div>
+            </button>
+
+            <!-- 2. Thinking -->
+            <button class="state-card-btn" data-state="thinking" id="stateBtnThinking">
+              <div class="state-card-icon purple-accent">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                </svg>
+              </div>
+              <div class="state-card-info">
+                <div class="state-card-header">
+                  <span class="state-name">2. Thinking</span>
+                  <span class="state-tag">Orbital</span>
+                </div>
+                <p class="state-card-desc">Both quadrilaterals rotating around each other in smooth circular orbit.</p>
+              </div>
+            </button>
+
+            <!-- 3. Processing -->
+            <button class="state-card-btn" data-state="processing" id="stateBtnProcessing">
+              <div class="state-card-icon coral-accent">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+              </div>
+              <div class="state-card-info">
+                <div class="state-card-header">
+                  <span class="state-name">3. Processing</span>
+                  <span class="state-tag">Harmonic</span>
+                </div>
+                <p class="state-card-desc">Rapid micro-vibration oscillating scale from smaller to bigger with pulse bursts.</p>
+              </div>
+            </button>
+
+            <!-- 4. Coaching -->
+            <button class="state-card-btn" data-state="coaching" id="stateBtnCoaching">
+              <div class="state-card-icon cyan-accent">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 8l4 4m0 0l-4 4m4-4H3M7 16l-4-4m0 0l4-4m-4 4h18"/>
+                </svg>
+              </div>
+              <div class="state-card-info">
+                <div class="state-card-header">
+                  <span class="state-name">4. Coaching</span>
+                  <span class="state-tag">Reciprocal</span>
+                </div>
+                <p class="state-card-desc">Quadrilaterals moving opposing left and right along each other rhythmically.</p>
+              </div>
+            </button>
+
+            <!-- 5. Complete -->
+            <button class="state-card-btn" data-state="complete" id="stateBtnComplete">
+              <div class="state-card-icon green-accent">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <div class="state-card-info">
+                <div class="state-card-header">
+                  <span class="state-name">5. Complete</span>
+                  <span class="state-tag">Morph</span>
+                </div>
+                <p class="state-card-desc">Pieces slowly come close together, lock into center, and convert into a glowing green tick.</p>
+              </div>
+            </button>
+
+            <!-- 6. Separating & Coming Together -->
+            <button class="state-card-btn" data-state="separating" id="stateBtnSeparating">
+              <div class="state-card-icon gold-accent">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="8" x2="12" y2="16"/>
+                  <line x1="8" y1="12" x2="16" y2="12"/>
+                </svg>
+              </div>
+              <div class="state-card-info">
+                <div class="state-card-header">
+                  <span class="state-name">6. Explode & Snap</span>
+                  <span class="state-tag">Kinetic</span>
+                </div>
+                <p class="state-card-desc">Magnetic separation and snap-together lock with spring physics dampening.</p>
+              </div>
+            </button>
+          </div>
+
+          <!-- Real-Time Parameter Sliders & Interactive Tweaker -->
+          <div class="parameter-tweaker">
+            <h4>Live Motion Tuner</h4>
+            <div class="slider-row">
+              <div class="slider-item">
+                <div class="slider-header">
+                  <span>Flap/Orbit Amplitude</span>
+                  <span id="ampVal">100%</span>
+                </div>
+                <input type="range" id="paramAmplitude" min="30" max="180" value="100">
+              </div>
+
+              <div class="slider-item">
+                <div class="slider-header">
+                  <span>Glow Radiance</span>
+                  <span id="glowVal">100%</span>
+                </div>
+                <input type="range" id="paramGlow" min="0" max="200" value="100">
+              </div>
+
+              <div class="slider-item">
+                <div class="slider-header">
+                  <span>3D Perspective Tilt</span>
+                  <span id="tiltVal">45°</span>
+                </div>
+                <input type="range" id="paramTilt" min="0" max="75" value="45">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- VIEW 2: LIVE LOADER PAGE SHOWCASE -->
+  <section id="view-loader-demo" class="view-panel">
+    <div class="loader-demo-screen">
+      <div class="loader-demo-card">
+        <div class="loader-top-bar">
+          <div class="window-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="window-title">lumix-ai-engine.internal/workspace</span>
+          <button id="restartDemoBtn" class="pill-btn">Reset Flow</button>
+        </div>
+
+        <div class="loader-body">
+          <div class="demo-logo-box">
+            <!-- Isolated Loader Svg Component -->
+            <svg id="demoLoaderSvg" viewBox="0 0 300 300" class="demo-loader-svg">
+              <g id="demoMasterGroup">
+                <g id="demoWingBlue" class="demo-wing blue-wing">
+                  <path d="M 44 175 L 112 175 C 117 175 121 173 124 170 L 163 131 C 166 128 168 124 168 119 L 168 56 C 168 49 160 45 155 50 L 37 168 C 33 172 36 175 44 175 Z"
+                        fill="#2870ED" />
+                </g>
+                <g id="demoWingCoral" class="demo-wing coral-wing">
+                  <path d="M 256 125 L 188 125 C 183 125 179 127 176 130 L 137 169 C 134 172 132 176 132 181 L 132 244 C 132 251 140 255 145 250 L 263 132 C 267 128 264 125 256 125 Z"
+                        fill="#F07150" />
+                </g>
+                <g id="demoCheckmark" class="demo-checkmark" opacity="0">
+                  <circle cx="150" cy="150" r="70" fill="#10B981" />
+                  <path d="M 120 150 L 142 172 L 186 128" fill="none" stroke="#FFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+                </g>
+              </g>
+            </svg>
+          </div>
+
+          <div class="demo-progress-section">
+            <div class="demo-status-row">
+              <span id="demoStatusMsg" class="demo-status-msg">Initializing LumiX neural engine...</span>
+              <span id="demoPercent" class="demo-percent">18%</span>
+            </div>
+            <div class="demo-progress-track">
+              <div id="demoProgressBar" class="demo-progress-fill" style="width: 18%"></div>
+            </div>
+          </div>
+
+          <div class="step-indicator-pills">
+            <div class="step-pill active" id="pill1">1. Butterfly Load</div>
+            <div class="step-arrow">→</div>
+            <div class="step-pill" id="pill2">2. Thinking</div>
+            <div class="step-arrow">→</div>
+            <div class="step-pill" id="pill3">3. Processing</div>
+            <div class="step-arrow">→</div>
+            <div class="step-pill" id="pill4">4. Coaching</div>
+            <div class="step-arrow">→</div>
+            <div class="step-pill" id="pill5">5. Complete</div>
+          </div>
+        </div>
+
+        <!-- Simulated App Content revealed after complete -->
+        <div id="simulatedAppView" class="simulated-app-view">
+          <div class="sim-header">
+            <div class="sim-badge">✨ LUMIX DASHBOARD READY</div>
+            <h3>Welcome to your LumiX Learning & AI Workspace</h3>
+          </div>
+          <div class="sim-grid">
+            <div class="sim-card">
+              <h4>🎯 Personalized Coach</h4>
+              <p>Adaptive curriculum calibrated for high-velocity mastery.</p>
+            </div>
+            <div class="sim-card">
+              <h4>⚡ Real-time Feedback</h4>
+              <p>Neural analysis active on 14 cognitive checkpoints.</p>
+            </div>
+            <div class="sim-card">
+              <h4>📈 Progress Metrics</h4>
+              <p>99.4% precision rating achieved in current session.</p>
+            </div>
+          </div>
+          <button id="simReplayBtn" class="primary-action-btn" style="margin-top: 20px;">Run Loader Again</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIEW 3: LOTTIE READY ASSETS & CODE HUB -->
+  <section id="view-lottie-hub" class="view-panel">
+    <div class="lottie-hub-container">
+      <div class="hub-header">
+        <div class="hub-header-text">
+          <h2>Lottie-Ready Assets & Code Generator</h2>
+          <p>Export production-ready Lottie JSON animations, SVG assets, React components, and pure CSS keyframes for web, iOS, Android, and React Native.</p>
+        </div>
+        <div class="hub-action-row">
+          <button id="downloadLottieBtn" class="primary-action-btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            </svg>
+            <span id="downloadBtnLabel">Download Lottie JSON</span>
+          </button>
+          <button id="copyCodeBtn" class="secondary-btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+            </svg>
+            <span>Copy Code</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Export Tabs (Lottie JSON, Pure CSS, SVG, React) -->
+      <div class="export-tabs-bar">
+        <button class="export-tab active" data-export="lottie">Lottie JSON (v5.5)</button>
+        <button class="export-tab" data-export="css">Pure CSS Keyframes</button>
+        <button class="export-tab" data-export="svg">Optimized SVG Symbol</button>
+        <button class="export-tab" data-export="react">React / Next.js Component</button>
+      </div>
+
+      <!-- Live Code Preview Card -->
+      <div class="code-preview-card">
+        <div class="code-preview-header">
+          <div class="file-meta">
+            <span class="file-dot"></span>
+            <span id="currentFileName" class="file-name">lumix-butterfly-loading.json</span>
+            <span id="fileSizeBadge" class="file-size-badge">2.8 KB</span>
+          </div>
+          <div class="code-header-right">
+            <span class="badge-ready">LOTTIE VERIFIED</span>
+          </div>
+        </div>
+        <pre class="code-box"><code id="codeOutput" class="code-content"></code></pre>
+      </div>
+
+      <!-- Batch Download Grid -->
+      <div class="lottie-batch-section">
+        <h3>All Lottie Animation Presets</h3>
+        <div class="batch-grid">
+          <div class="batch-card" data-preset="loading">
+            <div class="batch-icon">🦋</div>
+            <div class="batch-info">
+              <h4>Butterfly Loading</h4>
+              <p>Flapping 3D wings with altitude hover loop</p>
+            </div>
+            <button class="batch-dl-btn" data-preset="loading">Download JSON</button>
+          </div>
+
+          <div class="batch-card" data-preset="thinking">
+            <div class="batch-icon">🧠</div>
+            <div class="batch-info">
+              <h4>Thinking (Orbital)</h4>
+              <p>Dual quadrilateral revolving orbit loop</p>
+            </div>
+            <button class="batch-dl-btn" data-preset="thinking">Download JSON</button>
+          </div>
+
+          <div class="batch-card" data-preset="processing">
+            <div class="batch-icon">⚡</div>
+            <div class="batch-info">
+              <h4>Processing (Vibrate)</h4>
+              <p>High-frequency resonance & scale breath</p>
+            </div>
+            <button class="batch-dl-btn" data-preset="processing">Download JSON</button>
+          </div>
+
+          <div class="batch-card" data-preset="coaching">
+            <div class="batch-icon">🤝</div>
+            <div class="batch-info">
+              <h4>Coaching (Reciprocal)</h4>
+              <p>Opposing lateral glide along central axis</p>
+            </div>
+            <button class="batch-dl-btn" data-preset="coaching">Download JSON</button>
+          </div>
+
+          <div class="batch-card" data-preset="complete">
+            <div class="batch-icon">✅</div>
+            <div class="batch-info">
+              <h4>Complete (Morph)</h4>
+              <p>Magnetic convergence to green success checkmark</p>
+            </div>
+            <button class="batch-dl-btn" data-preset="complete">Download JSON</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIEW 4: MOTION DESIGN SYSTEM GUIDELINES -->
+  <section id="view-guidelines" class="view-panel">
+    <div class="guidelines-container">
+      <div class="guidelines-hero">
+        <span class="hero-tag">LUMIX DESIGN SYSTEM</span>
+        <h2>Motion Guidelines & Brand Physics</h2>
+        <p>The LumiX motion language communicates intelligent transformation, fluid guidance, and geometric precision. Every animation preserves the brand identity without geometric distortion.</p>
+      </div>
+
+      <!-- Color Tokens -->
+      <div class="guideline-card">
+        <h3>1. Color Architecture</h3>
+        <p>The core LumiX palette is composed of two primary luminescent hues and a verified success state.</p>
+        <div class="color-palette-grid">
+          <div class="color-swatch-card">
+            <div class="swatch" style="background: #2870ED;"></div>
+            <div class="swatch-details">
+              <h4>Electric Sapphire</h4>
+              <code>#2870ED</code>
+              <p>Used for Wing 1 (Top-Left), representing neural clarity and focus.</p>
+            </div>
+          </div>
+          <div class="color-swatch-card">
+            <div class="swatch" style="background: #F07150;"></div>
+            <div class="swatch-details">
+              <h4>Radiant Coral</h4>
+              <code>#F07150</code>
+              <p>Used for Wing 2 (Bottom-Right), representing warmth, energy, and coaching.</p>
+            </div>
+          </div>
+          <div class="color-swatch-card">
+            <div class="swatch" style="background: #10B981;"></div>
+            <div class="swatch-details">
+              <h4>Emerald Complete</h4>
+              <code>#10B981</code>
+              <p>Used exclusively for the completed checkmark state and successful resolutions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Motion Principles & Easing -->
+      <div class="guideline-card">
+        <h3>2. Easing & Timing Physics</h3>
+        <p>All LumiX motions utilize custom cubic-bezier curves mimicking magnetic attraction and aerodynamic lift.</p>
+        <div class="curves-grid">
+          <div class="curve-card">
+            <div class="curve-header">
+              <span class="curve-name">Fluid Elastic (Wing Flap)</span>
+              <code>cubic-bezier(0.45, 0.05, 0.55, 0.95)</code>
+            </div>
+            <p>Provides natural harmonic oscillation for continuous wing fluttering.</p>
+          </div>
+          <div class="curve-card">
+            <div class="curve-header">
+              <span class="curve-name">Magnetic Snap (Convergence)</span>
+              <code>cubic-bezier(0.34, 1.56, 0.64, 1)</code>
+            </div>
+            <p>Overshoots slightly before locking firmly into the center position.</p>
+          </div>
+          <div class="curve-card">
+            <div class="curve-header">
+              <span class="curve-name">Reciprocal Slide (Coaching)</span>
+              <code>cubic-bezier(0.65, 0, 0.35, 1)</code>
+            </div>
+            <p>Smooth sinusoidal acceleration at endpoints for alternating lateral motion.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Do's and Don'ts -->
+      <div class="guideline-card">
+        <h3>3. Brand Fidelity: Do's & Don'ts</h3>
+        <div class="dos-donts-grid">
+          <div class="dos-card">
+            <div class="dos-header">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="#10B981"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <h4>DO</h4>
+            </div>
+            <ul>
+              <li><strong>Preserve Quadrilateral Angles:</strong> Maintain the precise 45° hypotenuse and rounded vertex ratio.</li>
+              <li><strong>Keep Color Pair Separation:</strong> Keep `#2870ED` on top-left and `#F07150` on bottom-right.</li>
+              <li><strong>Use 3D Perspective Rotation:</strong> Rotate along the diagonal axis to achieve the authentic butterfly effect.</li>
+              <li><strong>Ensure 60+ FPS:</strong> Utilize GPU-accelerated CSS `transform` and `opacity` properties.</li>
+            </ul>
+          </div>
+
+          <div class="donts-card">
+            <div class="donts-header">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="#EF4444"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              <h4>DON'T</h4>
+            </div>
+            <ul>
+              <li><strong>Do NOT Distort Aspect Ratio:</strong> Never stretch or squash the core geometry independently of perspective.</li>
+              <li><strong>Do NOT Alter Brand Hues:</strong> Avoid swapping the blue and coral tones or introducing arbitrary gradients.</li>
+              <li><strong>Do NOT Use Linear Easing:</strong> Linear motion feels robotic and contradicts the organic butterfly concept.</li>
+              <li><strong>Do NOT Clip Shadows:</strong> Ensure adequate SVG viewBox padding to prevent glow clipping.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notification Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Script Files -->
+  <script src="motion-engine.js"></script>
+  <script src="lottie-generator.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
