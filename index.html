@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Basic&family=Caveat:wght@400..700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Handjet:wght,ELSH@100..900,2&family=Isometra&family=Playwrite+AR:wght@100..400&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
   <!-- Ambient background glow layers -->
@@ -88,9 +88,6 @@
             </div>
           </div>
 
-          <!-- Particles / Aura Background Canvas -->
-          <canvas id="particleCanvas" class="particle-canvas"></canvas>
-
           <!-- The LumiX Master Animated Emblem Container -->
           <div class="lumix-stage-wrapper" id="lumixStageWrapper">
             <div class="lumix-logo-system" id="lumixLogoSystem">
@@ -166,9 +163,6 @@
                           stroke-dasharray="120"
                           stroke-dashoffset="120" />
                   </g>
-
-                  <!-- Central Energy Spark Ring -->
-                  <circle id="energyRing" class="energy-ring" cx="150" cy="150" r="105" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2" stroke-dasharray="8 6" opacity="0"/>
                 </g>
               </svg>
             </div>
@@ -208,13 +202,7 @@
               </div>
             </div>
 
-            <div class="hud-right">
-              <label class="toggle-control" title="Toggle Wing Trails & Particles">
-                <input type="checkbox" id="toggleParticles" checked>
-                <span class="toggle-slider"></span>
-                <span class="toggle-text">Particles</span>
-              </label>
-            </div>
+            <div class="hud-right"></div>
           </div>
         </div>
 
@@ -271,7 +259,7 @@
                   <span class="state-name">3. Processing</span>
                   <span class="state-tag">Harmonic</span>
                 </div>
-                <p class="state-card-desc">Rapid micro-vibration oscillating scale from smaller to bigger with pulse bursts.</p>
+                <p class="state-card-desc">Rapid micro-vibration oscillating scale from smaller to bigger with high-frequency resonance.</p>
               </div>
             </button>
 
@@ -653,8 +641,8 @@
   <div id="toastContainer" class="toast-container"></div>
 
   <!-- Script Files -->
-  <script src="motion-engine.js"></script>
-  <script src="lottie-generator.js"></script>
-  <script src="app.js"></script>
+  <script src="motion-engine.js?v=2"></script>
+  <script src="lottie-generator.js?v=2"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>

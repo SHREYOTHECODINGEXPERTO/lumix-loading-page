@@ -16,8 +16,8 @@
 - **Motion Studio**: Fine-tune animation parameters in real-time (speed, amplitude, damping, blur, glow effects).
 - **Multi-State Motion Engine**:
   - 🦋 *Butterfly Flutter* — Fluid wing flap kinematics with dual-layer glow.
-  - 🪐 *Thinking Orbit* — Orbital tracking particles with magnetic acceleration.
-  - ⚡ *Processing Pulse* — High-frequency harmonic vibration and pulse rings.
+  - 🪐 *Thinking Orbit* — Dual quadrilaterals revolving in synchronized orbital rotation.
+  - ⚡ *Processing Pulse* — High-frequency harmonic vibration and scale pulsation.
   - 📐 *Coaching Slide* — Geometric deconstruction and alignment trajectories.
   - 🎯 *Completion Morph* — Elastic spring transition to checkmark/success state.
 - **Live Loader Demo**: Fullscreen simulated application boot sequence with realistic progress simulation, step triggers, and audio cues.
@@ -43,7 +43,7 @@
 ├── index.html            # Main application layout and view containers
 ├── styles.css            # Design system, glassmorphism styles, responsive UI
 ├── app.js                # View switching, controls, audio synthesis, and event binding
-├── motion-engine.js      # Physics-based canvas/SVG motion animation driver
+├── motion-engine.js      # SVG motion physics engine and state driver
 ├── lottie-generator.js   # Procedural Lottie JSON exporter
 ├── .gitignore            # Git ignore file
 └── README.md             # Project documentation

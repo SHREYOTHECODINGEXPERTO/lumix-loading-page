@@ -97,14 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Particles Toggle
-  const toggleParticles = document.getElementById('toggleParticles');
-  if (toggleParticles) {
-    toggleParticles.addEventListener('change', (e) => {
-      motionEngine.particlesEnabled = e.target.checked;
-    });
-  }
-
   // Parameter Tuner Sliders
   const paramAmplitude = document.getElementById('paramAmplitude');
   const ampVal = document.getElementById('ampVal');

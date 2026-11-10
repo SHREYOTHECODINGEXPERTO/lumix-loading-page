@@ -1,6 +1,6 @@
 /**
- * LumiX Motion Engine & Particle System
- * Manages motion states, aerodynamic particle flow, 3D perspective physics, and Web Audio cues.
+ * LumiX Motion Engine
+ * Manages motion states, 3D perspective physics, and Web Audio cues.
  */
 
 class LumixMotionEngine {
@@ -11,7 +11,6 @@ class LumixMotionEngine {
     this.glow = 1.0;
     this.tilt = 45;
     this.isPlaying = true;
-    this.particlesEnabled = true;
     this.soundEnabled = false;
 
     // DOM Elements
@@ -24,12 +23,7 @@ class LumixMotionEngine {
     this.stateTitle = document.getElementById('stateTitle');
     this.stateDesc = document.getElementById('stateDesc');
     this.fpsCounter = document.getElementById('fpsCounter');
-    this.canvas = document.getElementById('particleCanvas');
-    this.ctx = this.canvas ? this.canvas.getContext('2d') : null;
 
-    // Particle System Properties
-    this.particles = [];
-    this.maxParticles = 80;
     this.lastFrameTime = performance.now();
     this.frameCount = 0;
     this.lastFpsUpdate = performance.now();
@@ -37,21 +31,9 @@ class LumixMotionEngine {
     // Audio Context (Lazy init)
     this.audioCtx = null;
 
-    this.initCanvas();
     this.initAudio();
     this.applyState('loading');
     this.startAnimationLoop();
-  }
-
-  initCanvas() {
-    if (!this.canvas) return;
-    const resize = () => {
-      const rect = this.canvas.parentElement.getBoundingClientRect();
-      this.canvas.width = rect.width;
-      this.canvas.height = rect.height;
-    };
-    resize();
-    window.addEventListener('resize', resize);
   }
 
   initAudio() {
@@ -159,7 +141,7 @@ class LumixMotionEngine {
       },
       thinking: {
         title: 'Thinking (Orbital)',
-        desc: 'Both quadrilaterals revolving around each other in smooth circular orbit with pulsing energy waves.',
+        desc: 'Both quadrilaterals revolving around each other in smooth circular orbit.',
         status: 'STATE: THINKING (ORBIT)'
       },
       processing: {
@@ -191,9 +173,6 @@ class LumixMotionEngine {
 
     // Trigger state sound
     this.playSound(stateName);
-
-    // Spawn state particles burst
-    this.burstParticles(stateName);
   }
 
   setSpeed(val) {
@@ -261,12 +240,10 @@ class LumixMotionEngine {
     const logoSystem = document.getElementById('lumixLogoSystem');
     const blueGroup = document.getElementById('wingBlueGroup');
     const coralGroup = document.getElementById('wingCoralGroup');
-    const energyRing = document.getElementById('energyRing');
 
     if (logoSystem) logoSystem.style.animationPlayState = playState;
     if (blueGroup) blueGroup.style.animationPlayState = playState;
     if (coralGroup) coralGroup.style.animationPlayState = playState;
-    if (energyRing) energyRing.style.animationPlayState = playState;
 
     return this.isPlaying;
   }
@@ -286,97 +263,6 @@ class LumixMotionEngine {
     this.applyState(this.currentState);
   }
 
-  burstParticles(stateName) {
-    if (!this.canvas || !this.particlesEnabled) return;
-    const cx = this.canvas.width / 2;
-    const cy = this.canvas.height / 2;
-    const count = stateName === 'complete' ? 50 : 25;
-
-    for (let i = 0; i < count; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 3 + 1;
-      const color = stateName === 'complete' 
-        ? '#10B981' 
-        : (Math.random() > 0.5 ? '#2870ED' : '#F07150');
-
-      this.particles.push({
-        x: cx + (Math.random() - 0.5) * 40,
-        y: cy + (Math.random() - 0.5) * 40,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        size: Math.random() * 3.5 + 1.5,
-        alpha: 1,
-        color: color,
-        life: 1,
-        decay: Math.random() * 0.02 + 0.015,
-        type: stateName
-      });
-    }
-  }
-
-  updateParticles() {
-    if (!this.canvas || !this.ctx) return;
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-    if (!this.particlesEnabled) return;
-
-    const cx = this.canvas.width / 2;
-    const cy = this.canvas.height / 2;
-
-    // Ambient stardust generation
-    if (this.particles.length < this.maxParticles && Math.random() < 0.3) {
-      const isBlue = Math.random() > 0.5;
-      this.particles.push({
-        x: cx + (Math.random() - 0.5) * 160,
-        y: cy + (Math.random() - 0.5) * 160,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8 - 0.4,
-        size: Math.random() * 2.5 + 1,
-        alpha: Math.random() * 0.6 + 0.2,
-        color: isBlue ? '#2870ED' : '#F07150',
-        life: 1,
-        decay: Math.random() * 0.01 + 0.005,
-        type: 'ambient'
-      });
-    }
-
-    for (let i = this.particles.length - 1; i >= 0; i--) {
-      const p = this.particles[i];
-
-      // Motion dynamics per state
-      if (this.currentState === 'thinking') {
-        const dx = p.x - cx;
-        const dy = p.y - cy;
-        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-        p.vx += (-dy / dist) * 0.15;
-        p.vy += (dx / dist) * 0.15;
-      } else if (this.currentState === 'processing') {
-        p.vx += (Math.random() - 0.5) * 0.5;
-        p.vy += (Math.random() - 0.5) * 0.5;
-      }
-
-      p.x += p.vx * this.speed;
-      p.y += p.vy * this.speed;
-      p.life -= p.decay * this.speed;
-      p.alpha = Math.max(0, p.life);
-
-      if (p.life <= 0) {
-        this.particles.splice(i, 1);
-        continue;
-      }
-
-      this.ctx.save();
-      this.ctx.globalAlpha = p.alpha;
-      this.ctx.fillStyle = p.color;
-      this.ctx.shadowBlur = 8;
-      this.ctx.shadowColor = p.color;
-      this.ctx.beginPath();
-      this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      this.ctx.fill();
-      this.ctx.restore();
-    }
-  }
-
   startAnimationLoop() {
     const loop = (now) => {
       this.frameCount++;
@@ -385,10 +271,6 @@ class LumixMotionEngine {
         if (this.fpsCounter) this.fpsCounter.textContent = `${fps} FPS`;
         this.frameCount = 0;
         this.lastFpsUpdate = now;
-      }
-
-      if (this.isPlaying) {
-        this.updateParticles();
       }
 
       requestAnimationFrame(loop);

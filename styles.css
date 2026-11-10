@@ -409,15 +409,6 @@ pre,
   box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
 }
 
-.particle-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
 /* HUD Overlay Elements */
 .stage-hud {
   display: flex;
@@ -543,6 +534,20 @@ pre,
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.bottom-hud .hud-left,
+.bottom-hud .hud-right {
+  flex: 1;
+}
+
+.bottom-hud .hud-center {
+  flex: 0 0 auto;
+  justify-content: center;
+}
+
+.bottom-hud .hud-right {
+  justify-content: flex-end;
 }
 
 .hud-btn {
@@ -943,29 +948,12 @@ input[type="range"]::-webkit-slider-thumb:hover {
   animation: thinkingOrbit 2.4s infinite linear;
 }
 
-.state-thinking #energyRing {
-  opacity: 0.6;
-  animation: thinkingRingPulse 2.4s infinite ease-in-out;
-}
-
 @keyframes thinkingOrbit {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes thinkingRingPulse {
-  0%, 100% {
-    transform: scale(0.9);
-    opacity: 0.2;
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 0.7;
-    stroke: var(--lumix-blue);
   }
 }
 
