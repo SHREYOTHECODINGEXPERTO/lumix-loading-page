@@ -158,7 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const demoLoaderSvg = document.getElementById('demoLoaderSvg');
   const demoWingBlue = document.getElementById('demoWingBlue');
   const demoWingCoral = document.getElementById('demoWingCoral');
-  const demoCheckmark = document.getElementById('demoCheckmark');
+  const demoWingBlueTrace = document.getElementById('demoWingBlueTrace');
+  const demoWingCoralTrace = document.getElementById('demoWingCoralTrace');
+  const demoShineGroup = document.getElementById('demoShineGroup');
   const loaderBody = document.querySelector('.loader-body');
   const simulatedAppView = document.getElementById('simulatedAppView');
   const restartDemoBtn = document.getElementById('restartDemoBtn');
@@ -169,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { pillId: 'pill2', msg: '2. Thinking: Reconciling neural pathways...', state: 'thinking', pct: 45 },
     { pillId: 'pill3', msg: '3. Processing: Synthesizing adaptive model...', state: 'processing', pct: 70 },
     { pillId: 'pill4', msg: '4. Coaching: Aligning interactive modules...', state: 'coaching', pct: 90 },
-    { pillId: 'pill5', msg: '5. Complete: Workspace calibrated!', state: 'complete', pct: 100 }
+    { pillId: 'pill5', msg: '5. Complete: Geometry traced & system shining!', state: 'complete', pct: 100 }
   ];
 
   function applyDemoSvgState(stateName) {
@@ -180,28 +182,37 @@ document.addEventListener('DOMContentLoaded', () => {
       demoWingBlue.style.animation = 'butterflyFlapBlue 1.1s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95) alternate';
       demoWingCoral.style.animation = 'butterflyFlapCoral 1.1s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95) alternate';
       demoLoaderSvg.style.animation = 'butterflyFloat 3.2s infinite ease-in-out';
-      demoCheckmark.setAttribute('opacity', '0');
+      if (demoWingBlueTrace) demoWingBlueTrace.style.animation = 'none';
+      if (demoWingCoralTrace) demoWingCoralTrace.style.animation = 'none';
+      if (demoShineGroup) demoShineGroup.style.animation = 'none';
     } else if (stateName === 'thinking') {
       demoWingBlue.style.animation = 'none';
       demoWingCoral.style.animation = 'none';
       demoLoaderSvg.style.animation = 'thinkingOrbit 2.4s infinite linear';
-      demoCheckmark.setAttribute('opacity', '0');
+      if (demoWingBlueTrace) demoWingBlueTrace.style.animation = 'none';
+      if (demoWingCoralTrace) demoWingCoralTrace.style.animation = 'none';
+      if (demoShineGroup) demoShineGroup.style.animation = 'none';
     } else if (stateName === 'processing') {
       demoWingBlue.style.animation = 'processingVibrateBlue 0.07s infinite linear alternate';
       demoWingCoral.style.animation = 'processingVibrateCoral 0.07s infinite linear alternate';
       demoLoaderSvg.style.animation = 'processingPulseBreath 1.3s infinite ease-in-out';
-      demoCheckmark.setAttribute('opacity', '0');
+      if (demoWingBlueTrace) demoWingBlueTrace.style.animation = 'none';
+      if (demoWingCoralTrace) demoWingCoralTrace.style.animation = 'none';
+      if (demoShineGroup) demoShineGroup.style.animation = 'none';
     } else if (stateName === 'coaching') {
       demoWingBlue.style.animation = 'coachingGlideBlue 2.0s infinite cubic-bezier(0.65, 0, 0.35, 1)';
       demoWingCoral.style.animation = 'coachingGlideCoral 2.0s infinite cubic-bezier(0.65, 0, 0.35, 1)';
       demoLoaderSvg.style.animation = 'none';
-      demoCheckmark.setAttribute('opacity', '0');
+      if (demoWingBlueTrace) demoWingBlueTrace.style.animation = 'none';
+      if (demoWingCoralTrace) demoWingCoralTrace.style.animation = 'none';
+      if (demoShineGroup) demoShineGroup.style.animation = 'none';
     } else if (stateName === 'complete') {
-      demoWingBlue.style.animation = 'completeConvergeBlue 1.6s forwards cubic-bezier(0.25, 1, 0.5, 1)';
-      demoWingCoral.style.animation = 'completeConvergeCoral 1.6s forwards cubic-bezier(0.25, 1, 0.5, 1)';
-      demoLoaderSvg.style.animation = 'none';
-      demoCheckmark.setAttribute('opacity', '1');
-      demoCheckmark.style.animation = 'completeCheckmarkReveal 1.6s forwards cubic-bezier(0.34, 1.56, 0.64, 1)';
+      demoWingBlue.style.animation = 'completeWingBluePulse 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+      demoWingCoral.style.animation = 'completeWingCoralPulse 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+      demoLoaderSvg.style.animation = 'completeWholeLogoShine 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+      if (demoWingBlueTrace) demoWingBlueTrace.style.animation = 'completeTraceBlue 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+      if (demoWingCoralTrace) demoWingCoralTrace.style.animation = 'completeTraceCoral 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+      if (demoShineGroup) demoShineGroup.style.animation = 'completeShineBurst 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards';
     }
   }
 
@@ -241,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
       motionEngine.playSound(s.state);
 
       currentStepIndex++;
-      demoInterval = setTimeout(runStep, currentStepIndex === steps.length ? 2200 : 2000);
+      demoInterval = setTimeout(runStep, currentStepIndex === steps.length ? 2600 : 2000);
     };
 
     runStep();

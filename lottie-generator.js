@@ -62,7 +62,7 @@ class LumixLottieGenerator {
             s: isProcessing
               ? { a: 1, k: [{ t: 0, s: [90, 90, 100], e: [115, 115, 100] }, { t: 60, s: [115, 115, 100], e: [90, 90, 100] }, { t: 120, s: [90, 90, 100] }] }
               : isComplete
-              ? { a: 1, k: [{ t: 0, s: [100, 100, 100], e: [100, 100, 100] }, { t: 50, s: [80, 80, 100], e: [0, 0, 100] }, { t: 65, s: [0, 0, 100] }] }
+              ? { a: 1, k: [{ t: 0, s: [100, 100, 100], e: [100, 100, 100] }, { t: 65, s: [100, 100, 100], e: [108, 108, 100] }, { t: 80, s: [108, 108, 100], e: [100, 100, 100] }, { t: 120, s: [100, 100, 100] }] }
               : { a: 0, k: [100, 100, 100] }
           },
           ao: 0,
@@ -132,7 +132,7 @@ class LumixLottieGenerator {
             s: isProcessing
               ? { a: 1, k: [{ t: 0, s: [92, 92, 100], e: [114, 114, 100] }, { t: 60, s: [114, 114, 100], e: [92, 92, 100] }, { t: 120, s: [92, 92, 100] }] }
               : isComplete
-              ? { a: 1, k: [{ t: 0, s: [100, 100, 100], e: [100, 100, 100] }, { t: 50, s: [80, 80, 100], e: [0, 0, 100] }, { t: 65, s: [0, 0, 100] }] }
+              ? { a: 1, k: [{ t: 0, s: [100, 100, 100], e: [100, 100, 100] }, { t: 65, s: [100, 100, 100], e: [108, 108, 100] }, { t: 80, s: [108, 108, 100], e: [100, 100, 100] }, { t: 120, s: [100, 100, 100] }] }
               : { a: 0, k: [100, 100, 100] }
           },
           ao: 0,
@@ -179,36 +179,44 @@ class LumixLottieGenerator {
       ]
     };
 
-    // If complete state, add checkmark layer
+    // If complete state, add radiating shine aura layer
     if (isComplete) {
       lottieDoc.layers.unshift({
         ddd: 0,
         ind: 0,
         ty: 4,
-        nm: "Complete_Tick_Mark",
+        nm: "Complete_Shine_Aura",
         sr: 1,
         ks: {
-          o: { a: 1, k: [{ t: 0, s: [0], e: [0] }, { t: 55, s: [0], e: [100] }, { t: 70, s: [100] }] },
-          r: { a: 0, k: 0 },
+          o: { a: 1, k: [{ t: 0, s: [0], e: [0] }, { t: 60, s: [0], e: [100] }, { t: 80, s: [100], e: [0] }, { t: 110, s: [0] }] },
+          r: { a: 1, k: [{ t: 60, s: [0], e: [90] }, { t: 110, s: [90] }] },
           p: { a: 0, k: [200, 200, 0] },
           a: { a: 0, k: [150, 150, 0] },
-          s: { a: 1, k: [{ t: 0, s: [20, 20, 100], e: [20, 20, 100] }, { t: 55, s: [20, 20, 100], e: [112, 112, 100] }, { t: 75, s: [112, 112, 100], e: [100, 100, 100] }, { t: 90, s: [100, 100, 100] }] }
+          s: { a: 1, k: [{ t: 0, s: [20, 20, 100], e: [20, 20, 100] }, { t: 60, s: [20, 20, 100], e: [140, 140, 100] }, { t: 85, s: [140, 140, 100], e: [180, 180, 100] }, { t: 110, s: [180, 180, 100] }] }
         },
         ao: 0,
         shapes: [
           {
             ty: "gr",
-            nm: "Green_Circle",
+            nm: "Shine_Star",
             it: [
               {
-                ty: "el",
+                ty: "sr",
+                nm: "Star_Shape",
+                sy: 1,
+                pt: { a: 0, k: 4 },
                 p: { a: 0, k: [150, 150] },
-                s: { a: 0, k: [140, 140] }
+                r: { a: 0, k: 0 },
+                ir: { a: 0, k: 18 },
+                is: { a: 0, k: 0 },
+                or: { a: 0, k: 90 },
+                os: { a: 0, k: 0 }
               },
               {
                 ty: "fl",
-                c: { a: 0, k: this.brandColors.greenRgba },
-                o: { a: 0, k: 100 }
+                nm: "Fill",
+                c: { a: 0, k: [1, 1, 1, 1] },
+                o: { a: 0, k: 95 }
               },
               {
                 ty: "tr",
@@ -315,24 +323,32 @@ class LumixLottieGenerator {
   50% { transform: translateX(-32px); }
 }
 
-/* 5. Complete (Slow Convergence & Morph to Green Check) */
-.lumix-complete .wing-blue {
-  animation: lumixConvergeBlue 1.6s forwards cubic-bezier(0.25, 1, 0.5, 1);
+/* 5. Complete (Line Light Trace Around Logo & Full-Emblem Shine) */
+.lumix-complete .wing-blue-trace {
+  animation: lumixTraceBlue 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-.lumix-complete .wing-coral {
-  animation: lumixConvergeCoral 1.6s forwards cubic-bezier(0.25, 1, 0.5, 1);
+.lumix-complete .wing-coral-trace {
+  animation: lumixTraceCoral 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-@keyframes lumixConvergeBlue {
-  0% { transform: translate(-30px, -30px); opacity: 1; }
-  50% { transform: translate(6px, 6px); opacity: 0.9; }
-  65% { transform: translate(0, 0) scale(0.4); opacity: 0.2; }
-  75%, 100% { transform: scale(0); opacity: 0; }
+.lumix-complete {
+  animation: lumixLogoShine 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
-@keyframes lumixConvergeCoral {
-  0% { transform: translate(30px, 30px); opacity: 1; }
-  50% { transform: translate(-6px, -6px); opacity: 0.9; }
-  65% { transform: translate(0, 0) scale(0.4); opacity: 0.2; }
-  75%, 100% { transform: scale(0); opacity: 0; }
+@keyframes lumixTraceBlue {
+  0% { stroke-dasharray: 220 780; stroke-dashoffset: 1000; opacity: 0; }
+  12% { opacity: 1; }
+  85% { stroke-dasharray: 1000 0; stroke-dashoffset: 0; opacity: 1; stroke-width: 6; }
+  100% { stroke-dasharray: 1000 0; stroke-dashoffset: 0; opacity: 0.85; stroke-width: 4; }
+}
+@keyframes lumixTraceCoral {
+  0% { stroke-dasharray: 220 780; stroke-dashoffset: 1000; opacity: 0; }
+  12% { opacity: 1; }
+  85% { stroke-dasharray: 1000 0; stroke-dashoffset: 0; opacity: 1; stroke-width: 6; }
+  100% { stroke-dasharray: 1000 0; stroke-dashoffset: 0; opacity: 0.85; stroke-width: 4; }
+}
+@keyframes lumixLogoShine {
+  0%, 52% { transform: scale(1); filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.35)); }
+  62% { transform: scale(1.07); filter: brightness(1.85) drop-shadow(0 0 35px #FFF) drop-shadow(0 0 65px var(--lumix-blue)); }
+  100% { transform: scale(1); filter: brightness(1.2) drop-shadow(0 0 18px #FFF) drop-shadow(0 0 36px var(--lumix-blue)); }
 }`;
   }
 
@@ -424,15 +440,11 @@ export const LumiXLoader: React.FC<LumiXLoaderProps> = ({
         </g>
 
         {state === 'complete' && (
-          <g className="complete-checkmark">
-            <circle cx="150" cy="150" r="70" fill="url(#reactGreen)" />
+          <g className="complete-shine-flare">
+            <circle cx="150" cy="150" r="100" fill="url(#reactGreen)" opacity="0.4" />
             <path
-              d="M 120 150 L 142 172 L 186 128"
-              fill="none"
-              stroke="#FFFFFF"
-              strokeWidth="9"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              d="M 150 70 Q 150 150 70 150 Q 150 150 150 230 Q 150 150 230 150 Q 150 150 150 70 Z"
+              fill="#FFFFFF"
             />
           </g>
         )}

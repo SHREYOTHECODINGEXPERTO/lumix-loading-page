@@ -18,7 +18,9 @@ class LumixMotionEngine {
     this.masterSvg = document.getElementById('masterLogoSvg');
     this.wingBlueGroup = document.getElementById('wingBlueGroup');
     this.wingCoralGroup = document.getElementById('wingCoralGroup');
-    this.completeGroup = document.getElementById('completeCheckmarkGroup');
+    this.wingBlueTrace = document.getElementById('wingBlueTrace');
+    this.wingCoralTrace = document.getElementById('wingCoralTrace');
+    this.completeShineGroup = document.getElementById('completeShineGroup');
     this.statusText = document.getElementById('currentStatusText');
     this.stateTitle = document.getElementById('stateTitle');
     this.stateDesc = document.getElementById('stateDesc');
@@ -96,19 +98,33 @@ class LumixMotionEngine {
         osc.start(now);
         osc.stop(now + 0.35);
       } else if (type === 'complete') {
-        // Chord progression
-        const freqs = [523.25, 659.25, 783.99, 1046.50];
+        // Line light trace shimmer sweep followed by chord bloom
+        const sweepOsc = this.audioCtx.createOscillator();
+        const sweepGain = this.audioCtx.createGain();
+        sweepOsc.type = 'triangle';
+        sweepOsc.frequency.setValueAtTime(350, now);
+        sweepOsc.frequency.exponentialRampToValueAtTime(1200, now + 0.6);
+        sweepGain.gain.setValueAtTime(0.04, now);
+        sweepGain.gain.exponentialRampToValueAtTime(0.001, now + 0.65);
+        sweepOsc.connect(sweepGain);
+        sweepGain.connect(this.audioCtx.destination);
+        sweepOsc.start(now);
+        sweepOsc.stop(now + 0.65);
+
+        // Radiant shine chime burst
+        const freqs = [523.25, 659.25, 783.99, 1046.50, 1318.51];
         freqs.forEach((f, idx) => {
           const chordOsc = this.audioCtx.createOscillator();
           const chordGain = this.audioCtx.createGain();
           chordOsc.type = 'sine';
-          chordOsc.frequency.setValueAtTime(f, now + idx * 0.06);
-          chordGain.gain.setValueAtTime(0.06, now + idx * 0.06);
-          chordGain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.7);
+          const startTime = now + 0.55 + idx * 0.05;
+          chordOsc.frequency.setValueAtTime(f, startTime);
+          chordGain.gain.setValueAtTime(0.06, startTime);
+          chordGain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.9);
           chordOsc.connect(chordGain);
           chordGain.connect(this.audioCtx.destination);
-          chordOsc.start(now + idx * 0.06);
-          chordOsc.stop(now + idx * 0.06 + 0.7);
+          chordOsc.start(startTime);
+          chordOsc.stop(startTime + 0.9);
         });
       }
     } catch (e) {
@@ -125,11 +141,15 @@ class LumixMotionEngine {
       this.stageCard.classList.add(`state-${stateName}`);
     }
 
-    // Reset checkmark animations if returning from complete
-    if (this.completeGroup && stateName !== 'complete') {
-      this.completeGroup.setAttribute('opacity', '0');
-      const checkPath = document.getElementById('checkmarkPath');
-      if (checkPath) checkPath.style.strokeDashoffset = '120';
+    // Reset complete trace & shine animations if switching states
+    if (stateName !== 'complete') {
+      if (this.wingBlueTrace) this.wingBlueTrace.style.animation = 'none';
+      if (this.wingCoralTrace) this.wingCoralTrace.style.animation = 'none';
+      if (this.completeShineGroup) this.completeShineGroup.style.animation = 'none';
+    } else {
+      if (this.wingBlueTrace) this.wingBlueTrace.style.animation = '';
+      if (this.wingCoralTrace) this.wingCoralTrace.style.animation = '';
+      if (this.completeShineGroup) this.completeShineGroup.style.animation = '';
     }
 
     // Update Headings and Metadata
@@ -155,9 +175,9 @@ class LumixMotionEngine {
         status: 'STATE: COACHING (SLIDE)'
       },
       complete: {
-        title: 'Complete (Morph)',
-        desc: 'Pieces slowly come close together, lock into center, and convert into a glowing emerald tick mark.',
-        status: 'STATE: COMPLETE (RESOLVED)'
+        title: 'Complete (Shine)',
+        desc: 'A radiant line of light sweeps around the logo geometry, culminating in a brilliant whole-emblem shine.',
+        status: 'STATE: COMPLETE (SHINE)'
       },
       separating: {
         title: 'Explode & Snap',
@@ -203,8 +223,12 @@ class LumixMotionEngine {
         blueGroup.style.animationDuration = `${2.0 / this.speed}s`;
         coralGroup.style.animationDuration = `${2.0 / this.speed}s`;
       } else if (this.currentState === 'complete') {
-        blueGroup.style.animationDuration = `${1.6 / this.speed}s`;
-        coralGroup.style.animationDuration = `${1.6 / this.speed}s`;
+        blueGroup.style.animationDuration = `${2.4 / this.speed}s`;
+        coralGroup.style.animationDuration = `${2.4 / this.speed}s`;
+        if (this.wingBlueTrace) this.wingBlueTrace.style.animationDuration = `${1.4 / this.speed}s`;
+        if (this.wingCoralTrace) this.wingCoralTrace.style.animationDuration = `${1.4 / this.speed}s`;
+        if (this.completeShineGroup) this.completeShineGroup.style.animationDuration = `${2.4 / this.speed}s`;
+        if (logoSystem) logoSystem.style.animationDuration = `${2.4 / this.speed}s`;
       } else if (this.currentState === 'separating') {
         blueGroup.style.animationDuration = `${2.4 / this.speed}s`;
         coralGroup.style.animationDuration = `${2.4 / this.speed}s`;
@@ -252,14 +276,17 @@ class LumixMotionEngine {
     // Briefly clear animation and re-apply
     const blueGroup = document.getElementById('wingBlueGroup');
     const coralGroup = document.getElementById('wingCoralGroup');
-    if (blueGroup && coralGroup) {
-      blueGroup.style.animation = 'none';
-      coralGroup.style.animation = 'none';
-      void blueGroup.offsetWidth; // trigger reflow
-      void coralGroup.offsetWidth;
-      blueGroup.style.animation = '';
-      coralGroup.style.animation = '';
-    }
+    const logoSystem = document.getElementById('lumixLogoSystem');
+    const blueTrace = document.getElementById('wingBlueTrace');
+    const coralTrace = document.getElementById('wingCoralTrace');
+    const shineGroup = document.getElementById('completeShineGroup');
+
+    const els = [blueGroup, coralGroup, logoSystem, blueTrace, coralTrace, shineGroup].filter(Boolean);
+    els.forEach(el => {
+      el.style.animation = 'none';
+      void el.offsetWidth; // trigger reflow
+      el.style.animation = '';
+    });
     this.applyState(this.currentState);
   }
 

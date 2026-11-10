@@ -894,6 +894,19 @@ input[type="range"]::-webkit-slider-thumb:hover {
   transition: fill 0.4s ease, filter 0.3s ease;
 }
 
+.wing-trace-path {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.complete-shine-group {
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: 150px 150px;
+}
+
 /* 1. BUTTERFLY LOADING STATE: 3D Fluttering Wing Flap & Floating */
 .state-loading #lumixLogoSystem {
   animation: butterflyFloat 3.2s infinite ease-in-out;
@@ -1033,80 +1046,199 @@ input[type="range"]::-webkit-slider-thumb:hover {
   }
 }
 
-/* 5. COMPLETE STATE: Slow Convergence & Morph to Green Checkmark */
-.state-complete #wingBlueGroup {
-  animation: completeConvergeBlue 1.6s forwards cubic-bezier(0.25, 1, 0.5, 1);
+/* 5. COMPLETE STATE: Line Light Trace Around Logo & Full-Emblem Shine */
+.state-complete .wing-trace-path {
+  opacity: 1;
+  visibility: visible;
 }
 
-.state-complete #wingCoralGroup {
-  animation: completeConvergeCoral 1.6s forwards cubic-bezier(0.25, 1, 0.5, 1);
+.state-complete #wingBlueTrace,
+.state-complete #demoWingBlueTrace {
+  animation: completeTraceBlue 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.state-complete #completeCheckmarkGroup {
-  animation: completeCheckmarkReveal 1.6s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
+.state-complete #wingCoralTrace,
+.state-complete #demoWingCoralTrace {
+  animation: completeTraceCoral 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.state-complete #checkmarkPath {
-  animation: drawCheckmark 0.8s 0.6s forwards ease-out;
+.state-complete #lumixLogoSystem,
+.state-complete #demoLoaderSvg {
+  animation: completeWholeLogoShine 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-@keyframes completeConvergeBlue {
+.state-complete #wingBlueGroup,
+.state-complete #demoWingBlue {
+  animation: completeWingBluePulse 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.state-complete #wingCoralGroup,
+.state-complete #demoWingCoral {
+  animation: completeWingCoralPulse 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.state-complete #completeShineGroup,
+.state-complete #demoShineGroup {
+  animation: completeShineBurst 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes completeTraceBlue {
   0% {
-    transform: translate(-30px, -30px);
+    stroke-dasharray: 220 780;
+    stroke-dashoffset: 1000;
+    opacity: 0;
+    filter: drop-shadow(0 0 4px #FFFFFF) drop-shadow(0 0 10px #38BDF8);
+  }
+  12% {
     opacity: 1;
   }
-  50% {
-    transform: translate(6px, 6px) scale(0.95);
-    opacity: 0.9;
-  }
-  65% {
-    transform: translate(0, 0) scale(0.4);
-    opacity: 0.2;
-  }
-  75%, 100% {
-    transform: scale(0);
-    opacity: 0;
-  }
-}
-
-@keyframes completeConvergeCoral {
-  0% {
-    transform: translate(30px, 30px);
+  60% {
+    stroke-dasharray: 480 520;
+    stroke-dashoffset: 300;
     opacity: 1;
+    stroke-width: 5;
+    filter: drop-shadow(0 0 8px #FFFFFF) drop-shadow(0 0 18px #60A5FA);
   }
-  50% {
-    transform: translate(-6px, -6px) scale(0.95);
-    opacity: 0.9;
-  }
-  65% {
-    transform: translate(0, 0) scale(0.4);
-    opacity: 0.2;
-  }
-  75%, 100% {
-    transform: scale(0);
-    opacity: 0;
-  }
-}
-
-@keyframes completeCheckmarkReveal {
-  0%, 50% {
-    opacity: 0;
-    transform: scale(0.2);
-  }
-  75% {
+  85% {
+    stroke-dasharray: 1000 0;
+    stroke-dashoffset: 0;
     opacity: 1;
-    transform: scale(1.12);
+    stroke-width: 6;
+    filter: drop-shadow(0 0 16px #FFFFFF) drop-shadow(0 0 30px #93C5FD);
+  }
+  94% {
+    opacity: 1;
+    stroke-width: 8;
+    filter: drop-shadow(0 0 25px #FFFFFF) drop-shadow(0 0 45px #60A5FA);
   }
   100% {
-    opacity: 1;
-    transform: scale(1);
-    filter: drop-shadow(0 10px 30px var(--lumix-green-glow));
+    stroke-dasharray: 1000 0;
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+    stroke-width: 4;
+    filter: drop-shadow(0 0 10px #FFFFFF) drop-shadow(0 0 22px #3B82F6);
   }
 }
 
-@keyframes drawCheckmark {
-  to {
+@keyframes completeTraceCoral {
+  0% {
+    stroke-dasharray: 220 780;
+    stroke-dashoffset: 1000;
+    opacity: 0;
+    filter: drop-shadow(0 0 4px #FFFFFF) drop-shadow(0 0 10px #FB7185);
+  }
+  12% {
+    opacity: 1;
+  }
+  60% {
+    stroke-dasharray: 480 520;
+    stroke-dashoffset: 300;
+    opacity: 1;
+    stroke-width: 5;
+    filter: drop-shadow(0 0 8px #FFFFFF) drop-shadow(0 0 18px #F87171);
+  }
+  85% {
+    stroke-dasharray: 1000 0;
     stroke-dashoffset: 0;
+    opacity: 1;
+    stroke-width: 6;
+    filter: drop-shadow(0 0 16px #FFFFFF) drop-shadow(0 0 30px #FDA4AF);
+  }
+  94% {
+    opacity: 1;
+    stroke-width: 8;
+    filter: drop-shadow(0 0 25px #FFFFFF) drop-shadow(0 0 45px #F43F5E);
+  }
+  100% {
+    stroke-dasharray: 1000 0;
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+    stroke-width: 4;
+    filter: drop-shadow(0 0 10px #FFFFFF) drop-shadow(0 0 22px #F07150);
+  }
+}
+
+@keyframes completeWholeLogoShine {
+  0%, 52% {
+    transform: scale(1);
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.35));
+  }
+  62% {
+    transform: scale(1.07);
+    filter: brightness(1.85) drop-shadow(0 0 35px rgba(255, 255, 255, 0.98)) drop-shadow(0 0 65px rgba(40, 112, 237, 0.85)) drop-shadow(0 0 65px rgba(240, 113, 80, 0.85));
+  }
+  78% {
+    transform: scale(1.02);
+    filter: brightness(1.35) drop-shadow(0 0 24px rgba(255, 255, 255, 0.75)) drop-shadow(0 0 45px rgba(40, 112, 237, 0.7)) drop-shadow(0 0 45px rgba(240, 113, 80, 0.7));
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1.2) drop-shadow(0 0 18px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 36px rgba(40, 112, 237, 0.6)) drop-shadow(0 0 36px rgba(240, 113, 80, 0.6));
+  }
+}
+
+@keyframes completeWingBluePulse {
+  0%, 48% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  58% {
+    transform: translate(-3px, -3px) scale(1.03);
+    filter: brightness(1.6) drop-shadow(0 0 24px #3A82FF);
+  }
+  70% {
+    transform: translate(0, 0) scale(1.02);
+    filter: brightness(1.3) drop-shadow(0 0 18px #2870ED);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    filter: brightness(1.15) drop-shadow(0 0 14px #2870ED);
+    opacity: 1;
+  }
+}
+
+@keyframes completeWingCoralPulse {
+  0%, 48% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  58% {
+    transform: translate(3px, 3px) scale(1.03);
+    filter: brightness(1.6) drop-shadow(0 0 24px #FF8260);
+  }
+  70% {
+    transform: translate(0, 0) scale(1.02);
+    filter: brightness(1.3) drop-shadow(0 0 18px #F07150);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    filter: brightness(1.15) drop-shadow(0 0 14px #F07150);
+    opacity: 1;
+  }
+}
+
+@keyframes completeShineBurst {
+  0%, 50% {
+    opacity: 0;
+    transform: scale(0.2) rotate(0deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.2) rotate(45deg);
+    filter: drop-shadow(0 0 25px #FFFFFF) drop-shadow(0 0 45px #93C5FD);
+  }
+  74% {
+    opacity: 0.65;
+    transform: scale(1.45) rotate(90deg);
+    filter: drop-shadow(0 0 35px #FDA4AF);
+  }
+  88% {
+    opacity: 0.2;
+    transform: scale(1.7) rotate(120deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.9) rotate(135deg);
   }
 }
 

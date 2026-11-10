@@ -19,7 +19,7 @@
   - 🪐 *Thinking Orbit* — Dual quadrilaterals revolving in synchronized orbital rotation.
   - ⚡ *Processing Pulse* — High-frequency harmonic vibration and scale pulsation.
   - 📐 *Coaching Slide* — Geometric deconstruction and alignment trajectories.
-  - 🎯 *Completion Morph* — Elastic spring transition to checkmark/success state.
+  - 🎯 *Completion Shine* — Radiant line light effect tracing the logo outline with a brilliant whole-emblem shine burst.
 - **Live Loader Demo**: Fullscreen simulated application boot sequence with realistic progress simulation, step triggers, and audio cues.
 - **Lottie & Code Export**: Procedural Lottie JSON generator and embed code export (SVG, CSS Keyframes, Canvas).
 - **Interactive Audio & Theming**: Synthesized Web Audio API sound effects and seamless Dark/Light theme switching.

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Basic&family=Caveat:wght@400..700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Handjet:wght,ELSH@100..900,2&family=Isometra&family=Playwrite+AR:wght@100..400&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
   <!-- Ambient background glow layers -->
@@ -127,6 +127,32 @@
                   <filter id="shadowFilter" x="-20%" y="-20%" width="140%" height="140%">
                     <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.3" />
                   </filter>
+
+                  <!-- Complete State Light Trace & Shine Gradients -->
+                  <linearGradient id="traceBlueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFFFFF" />
+                    <stop offset="40%" stop-color="#93C5FD" />
+                    <stop offset="100%" stop-color="#2870ED" />
+                  </linearGradient>
+
+                  <linearGradient id="traceCoralGradient" x1="100%" y1="100%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#FFFFFF" />
+                    <stop offset="40%" stop-color="#FDA4AF" />
+                    <stop offset="100%" stop-color="#F07150" />
+                  </linearGradient>
+
+                  <radialGradient id="completeAuraGradient" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+                    <stop offset="35%" stop-color="#93C5FD" stop-opacity="0.6" />
+                    <stop offset="70%" stop-color="#FDA4AF" stop-opacity="0.3" />
+                    <stop offset="100%" stop-color="#2870ED" stop-opacity="0" />
+                  </radialGradient>
+
+                  <radialGradient id="completeStarGradient" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+                    <stop offset="50%" stop-color="#E0F2FE" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#38BDF8" stop-opacity="0" />
+                  </radialGradient>
                 </defs>
 
                 <!-- Center Rotation & Transform Group -->
@@ -139,6 +165,16 @@
                           d="M 44 175 L 112 175 C 117 175 121 173 124 170 L 163 131 C 166 128 168 124 168 119 L 168 56 C 168 49 160 45 155 50 L 37 168 C 33 172 36 175 44 175 Z"
                           fill="url(#blueGradient)"
                           filter="url(#shadowFilter)" />
+                    <!-- Light Trace Line Effect -->
+                    <path id="wingBlueTrace"
+                          class="wing-trace-path blue-trace"
+                          d="M 44 175 L 112 175 C 117 175 121 173 124 170 L 163 131 C 166 128 168 124 168 119 L 168 56 C 168 49 160 45 155 50 L 37 168 C 33 172 36 175 44 175 Z"
+                          fill="none"
+                          stroke="url(#traceBlueGradient)"
+                          stroke-width="5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          pathLength="1000" />
                   </g>
 
                   <!-- Coral Quadrilateral (Wing 2: Bottom-Right) -->
@@ -148,20 +184,24 @@
                           d="M 256 125 L 188 125 C 183 125 179 127 176 130 L 137 169 C 134 172 132 176 132 181 L 132 244 C 132 251 140 255 145 250 L 263 132 C 267 128 264 125 256 125 Z"
                           fill="url(#coralGradient)"
                           filter="url(#shadowFilter)" />
-                  </g>
-
-                  <!-- Success Morphing Checkmark (Hidden until complete state) -->
-                  <g id="completeCheckmarkGroup" class="complete-checkmark-group" opacity="0">
-                    <circle cx="150" cy="150" r="70" fill="url(#successGradient)" filter="url(#shadowFilter)"/>
-                    <path id="checkmarkPath"
-                          d="M 120 150 L 142 172 L 186 128"
+                    <!-- Light Trace Line Effect -->
+                    <path id="wingCoralTrace"
+                          class="wing-trace-path coral-trace"
+                          d="M 256 125 L 188 125 C 183 125 179 127 176 130 L 137 169 C 134 172 132 176 132 181 L 132 244 C 132 251 140 255 145 250 L 263 132 C 267 128 264 125 256 125 Z"
                           fill="none"
-                          stroke="#FFFFFF"
-                          stroke-width="9"
+                          stroke="url(#traceCoralGradient)"
+                          stroke-width="5"
                           stroke-linecap="round"
                           stroke-linejoin="round"
-                          stroke-dasharray="120"
-                          stroke-dashoffset="120" />
+                          pathLength="1000" />
+                  </g>
+
+                  <!-- Central Radiant Shine Flare (bursts when trace finishes) -->
+                  <g id="completeShineGroup" class="complete-shine-group" opacity="0">
+                    <circle cx="150" cy="150" r="110" fill="url(#completeAuraGradient)" />
+                    <path class="complete-shine-star"
+                          d="M 150 70 Q 150 150 70 150 Q 150 150 150 230 Q 150 150 230 150 Q 150 150 150 70 Z"
+                          fill="url(#completeStarGradient)" />
                   </g>
                 </g>
               </svg>
@@ -283,16 +323,16 @@
             <button class="state-card-btn" data-state="complete" id="stateBtnComplete">
               <div class="state-card-icon green-accent">
                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                  <polyline points="22 4 12 14.01 9 11.01"/>
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                  <circle cx="12" cy="12" r="3"/>
                 </svg>
               </div>
               <div class="state-card-info">
                 <div class="state-card-header">
                   <span class="state-name">5. Complete</span>
-                  <span class="state-tag">Morph</span>
+                  <span class="state-tag">Shine</span>
                 </div>
-                <p class="state-card-desc">Pieces slowly come close together, lock into center, and convert into a glowing green tick.</p>
+                <p class="state-card-desc">Luminous light line races around the logo geometry, culminating in a radiant full-emblem shine.</p>
               </div>
             </button>
 
@@ -371,14 +411,34 @@
                 <g id="demoWingBlue" class="demo-wing blue-wing">
                   <path d="M 44 175 L 112 175 C 117 175 121 173 124 170 L 163 131 C 166 128 168 124 168 119 L 168 56 C 168 49 160 45 155 50 L 37 168 C 33 172 36 175 44 175 Z"
                         fill="#2870ED" />
+                  <path id="demoWingBlueTrace"
+                        class="wing-trace-path blue-trace"
+                        d="M 44 175 L 112 175 C 117 175 121 173 124 170 L 163 131 C 166 128 168 124 168 119 L 168 56 C 168 49 160 45 155 50 L 37 168 C 33 172 36 175 44 175 Z"
+                        fill="none"
+                        stroke="#93C5FD"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        pathLength="1000" />
                 </g>
                 <g id="demoWingCoral" class="demo-wing coral-wing">
                   <path d="M 256 125 L 188 125 C 183 125 179 127 176 130 L 137 169 C 134 172 132 176 132 181 L 132 244 C 132 251 140 255 145 250 L 263 132 C 267 128 264 125 256 125 Z"
                         fill="#F07150" />
+                  <path id="demoWingCoralTrace"
+                        class="wing-trace-path coral-trace"
+                        d="M 256 125 L 188 125 C 183 125 179 127 176 130 L 137 169 C 134 172 132 176 132 181 L 132 244 C 132 251 140 255 145 250 L 263 132 C 267 128 264 125 256 125 Z"
+                        fill="none"
+                        stroke="#FDA4AF"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        pathLength="1000" />
                 </g>
-                <g id="demoCheckmark" class="demo-checkmark" opacity="0">
-                  <circle cx="150" cy="150" r="70" fill="#10B981" />
-                  <path d="M 120 150 L 142 172 L 186 128" fill="none" stroke="#FFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+                <g id="demoShineGroup" class="complete-shine-group" opacity="0">
+                  <circle cx="150" cy="150" r="100" fill="url(#completeAuraGradient)" />
+                  <path class="complete-shine-star"
+                        d="M 150 70 Q 150 150 70 150 Q 150 150 150 230 Q 150 150 230 150 Q 150 150 150 70 Z"
+                        fill="#FFFFFF" />
                 </g>
               </g>
             </svg>
@@ -521,10 +581,10 @@
           </div>
 
           <div class="batch-card" data-preset="complete">
-            <div class="batch-icon">✅</div>
+            <div class="batch-icon">✨</div>
             <div class="batch-info">
-              <h4>Complete (Morph)</h4>
-              <p>Magnetic convergence to green success checkmark</p>
+              <h4>Complete (Shine)</h4>
+              <p>Line light outline trace and radiant all-logo shine</p>
             </div>
             <button class="batch-dl-btn" data-preset="complete">Download JSON</button>
           </div>
@@ -641,8 +701,8 @@
   <div id="toastContainer" class="toast-container"></div>
 
   <!-- Script Files -->
-  <script src="motion-engine.js?v=2"></script>
-  <script src="lottie-generator.js?v=2"></script>
-  <script src="app.js?v=2"></script>
+  <script src="motion-engine.js?v=3"></script>
+  <script src="lottie-generator.js?v=3"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>
